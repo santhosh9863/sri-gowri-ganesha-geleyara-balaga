@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Donate | SRI GOWRI GANESHA GELEYARA BALAGA</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<section class="donate-page">
+
+<h1>Support Our Celebration</h1>
+
+<p>
+Your contribution helps us organize Ganesh Chaturthi celebrations,
+cultural programs, and community activities.
+</p>
+
+<div class="donate-card">
+
+<img src="images/qr.png" alt="UPI QR Code">
+
+<p class="scan-text">Scan the QR code to donate</p>
+
+<h2 id="upiID">9538111909@upi</h2>
+
+<button onclick="copyUPI()" class="copy-btn">
+<i class="fa-solid fa-copy"></i> Copy UPI ID
+</button>
+
+<div class="upi-apps">
+
+<i class="fa-brands fa-google-pay"></i>
+<i class="fa-solid fa-mobile-screen"></i>
+<i class="fa-solid fa-credit-card"></i>
+
+</div>
+
+</div>
+
+<div class="back-home">
+
+<a href="index.html" class="home-btn">
+<i class="fa-solid fa-arrow-left"></i> Back to Home
+</a>
+
+</div>
+
+</section>
+
+
+<script>
+
+function copyUPI(){
+
+const upi = document.getElementById("upiID").innerText;
+
+navigator.clipboard.writeText(upi);
+
+alert("UPI ID copied!");
+
+}
+
+</script>
+
+</body>
+</html>

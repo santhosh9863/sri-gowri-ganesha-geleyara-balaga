@@ -1,0 +1,992 @@
+/* ------------------------------
+GLOBAL FESTIVAL COLOR VARIABLES
+------------------------------ */
+
+:root{
+--saffron:#ff7a00;
+--maroon:#800020;
+--gold:#ffd700;
+--cream:#fff8e7;
+--dark:#2c1810;
+}
+
+/* ------------------------------
+BASE STYLES
+------------------------------ */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:"Poppins",sans-serif;
+background:var(--cream);
+color:var(--dark);
+line-height:1.6;
+overflow-x:hidden;
+}
+
+/* ------------------------------
+NAVIGATION BAR
+------------------------------ */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:linear-gradient(90deg,#5c0018,#800020,#ff7a00);
+box-shadow:0 6px 20px rgba(0,0,0,0.35);
+}
+
+.navbar{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px 20px;
+}
+
+.logo{
+
+font-family:'Cinzel', serif;
+
+font-size:20px;
+
+color:#ffd700;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+text-shadow:
+0 0 6px rgba(255,215,0,0.6);
+
+}
+.nav-links{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:500;
+position:relative;
+transition:0.3s;
+}
+
+.nav-links a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-5px;
+width:0%;
+height:2px;
+background:var(--gold);
+transition:0.3s;
+}
+
+.nav-links a:hover::after{
+width:100%;
+}
+
+.nav-links a:hover{
+color:var(--gold);
+}
+
+/* ------------------------------
+HERO SECTION
+------------------------------ */
+
+.hero{
+position:relative;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+background-image:url("images/ganesh-hero.jpg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+/* dark overlay */
+
+.hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(
+rgba(0,0,0,0.55),
+rgba(128,0,32,0.65)
+);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:850px;
+padding:20px;
+animation:fadeIn 2s ease;
+}
+
+.hero h1{
+font-family:"Playfair Display",serif;
+font-size:58px;
+letter-spacing:3px;
+margin-bottom:10px;
+color:var(--gold);
+text-shadow:
+0 0 10px rgba(255,215,0,0.8),
+0 0 25px rgba(255,215,0,0.6);
+}
+.hero h2{
+
+margin-top:12px;
+font-size:26px;
+color:white;
+
+text-shadow:
+0 0 8px rgba(0,0,0,0.7),
+0 0 15px rgba(0,0,0,0.6);
+
+}
+/* ------------------------------
+AARTI BELL BUTTON
+------------------------------ */
+
+.aarti-bell-btn{
+
+margin-top:25px;
+background:linear-gradient(45deg,#ff7a00,#ffd700);
+color:white;
+border:none;
+
+padding:12px 22px;
+font-size:16px;
+font-weight:bold;
+
+border-radius:30px;
+cursor:pointer;
+
+box-shadow:
+0 6px 20px rgba(0,0,0,0.35),
+0 0 15px rgba(255,215,0,0.5);
+
+transition:0.3s;
+
+}
+
+.aarti-bell-btn i{
+margin-right:6px;
+}
+
+.aarti-bell-btn:hover{
+
+transform:scale(1.08);
+
+box-shadow:
+0 10px 28px rgba(0,0,0,0.4),
+0 0 20px rgba(255,215,0,0.8);
+
+}
+
+/* ------------------------------
+COUNTDOWN
+------------------------------ */
+
+.countdown{
+
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:30px;
+flex-wrap:wrap;
+
+}
+
+.time-box{
+
+background:linear-gradient(135deg,#ff7a00,#ffd700);
+color:white;
+padding:18px;
+border-radius:12px;
+text-align:center;
+min-width:90px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
+
+transition:0.3s;
+
+}
+
+.time-box span{
+
+font-size:32px;
+font-weight:bold;
+display:block;
+
+}
+
+.time-box p{
+
+margin:0;
+font-size:14px;
+
+}
+
+.time-box:hover{
+transform:translateY(-5px);
+}
+
+/* ------------------------------
+SECTION GENERAL
+------------------------------ */
+
+section{
+padding:80px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+font-family:"Playfair Display",serif;
+font-size:36px;
+color:var(--maroon);
+margin-bottom:35px;
+}
+
+/* ------------------------------
+EVENT CARDS
+------------------------------ */
+
+.events-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.event-card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 8px 22px rgba(0,0,0,0.15);
+transition:0.3s;
+}
+
+.event-card h3{
+color:var(--saffron);
+margin-bottom:10px;
+}
+
+.event-card:hover{
+transform:translateY(-10px);
+box-shadow:0 14px 32px rgba(0,0,0,0.25);
+}
+
+/* ------------------------------
+GALLERY
+------------------------------ */
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:18px;
+}
+
+.gallery-grid img{
+width:100%;
+border-radius:12px;
+transition:0.4s;
+cursor:pointer;
+box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
+
+.gallery-grid img:hover{
+transform:scale(1.08);
+box-shadow:0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* ------------------------------
+LIGHTBOX
+------------------------------ */
+
+.lightbox-overlay{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.85);
+
+display:none;
+justify-content:center;
+align-items:center;
+
+z-index:2000;
+
+}
+
+.lightbox-overlay img{
+
+max-width:90%;
+max-height:90%;
+border-radius:12px;
+
+box-shadow:0 10px 35px rgba(0,0,0,0.6);
+
+}
+
+/* ------------------------------
+SPONSORS
+------------------------------ */
+
+.sponsors-grid{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.sponsors-grid img{
+max-width:150px;
+opacity:0.85;
+transition:0.3s;
+}
+
+.sponsors-grid img:hover{
+opacity:1;
+transform:scale(1.1);
+}
+/* ------------------------------
+CONTACT
+------------------------------ */
+
+.contact{
+text-align:center;
+}
+
+.location-box{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+font-size:18px;
+margin-top:15px;
+}
+
+.location-box a{
+text-decoration:none;
+color:var(--maroon);
+font-weight:600;
+}
+
+.location-icon{
+font-size:22px;
+color:#ff7a00;
+}
+
+/* instagram */
+
+.instagram-link{
+display:flex;
+justify-content:center;
+margin-top:20px;
+}
+
+.instagram-link a{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:18px;
+text-decoration:none;
+color:#c13584;
+font-weight:600;
+}
+
+/* ------------------------------
+FOOTER
+------------------------------ */
+
+footer{
+background:linear-gradient(90deg,#5c0018,#800020);
+color:white;
+text-align:center;
+padding:50px 20px;
+margin-top:60px;
+}
+
+.social-icons{
+margin-top:15px;
+display:flex;
+justify-content:center;
+gap:25px;
+font-size:22px;
+}
+
+.social-icons a{
+color:var(--gold);
+transition:0.3s;
+}
+
+.social-icons a:hover{
+transform:scale(1.2);
+}
+
+/* ------------------------------
+ANIMATIONS
+------------------------------ */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+#fireworksCanvas{
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+z-index:-1;
+
+}
+.sponsor-card{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+gap:8px;
+
+}
+
+.sponsor-card img{
+
+width:150px;
+border-radius:10px;
+
+}
+
+.sponsor-card h3{
+
+margin-top:10px;
+font-size:20px;
+color:#3a1f1f;
+
+}
+
+.sponsor-card p{
+
+font-size:14px;
+color:#555;
+
+}
+.sponsor-card{
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+gap:8px;
+}
+
+.sponsor-card img{
+width:150px;
+border-radius:10px;
+}
+
+.sponsor-card h3{
+font-size:20px;
+color:#3a1f1f;
+margin-top:10px;
+}
+
+.sponsor-text{
+font-size:15px;
+color:#800020;
+font-weight:500;
+}
+.gallery-button{
+margin-top:40px;
+text-align:center;
+}
+
+.gallery-button a{
+background:linear-gradient(45deg,#ff7a00,#ffd700);
+color:white;
+padding:12px 28px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.gallery-button a:hover{
+transform:scale(1.05);
+}
+/* ------------------------------
+BACK TO HOME BUTTON
+------------------------------ */
+
+.back-home{
+
+text-align:center;
+margin-top:50px;
+
+}
+
+.home-btn{
+
+display:inline-block;
+
+background:linear-gradient(45deg,#ff7a00,#ffd700);
+color:white;
+
+padding:12px 28px;
+
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+
+box-shadow:0 6px 20px rgba(0,0,0,0.3);
+
+transition:0.3s;
+
+}
+
+.home-btn:hover{
+
+transform:scale(1.07);
+
+box-shadow:0 10px 28px rgba(0,0,0,0.4);
+
+}
+.gallery-title{
+
+font-family:'Playfair Display', serif;
+
+font-size:42px;
+text-align:center;
+
+color:#800020;
+
+margin-top:120px;
+margin-bottom:40px;
+
+letter-spacing:1px;
+
+}
+.menu-toggle{
+
+font-size:22px;
+color:white;
+cursor:pointer;
+
+}
+
+.menu-toggle{
+
+font-size:22px;
+color:white;
+cursor:pointer;
+
+}
+
+.nav-links{
+
+position:absolute;
+top:70px;
+right:20px;
+
+background:white;
+
+flex-direction:column;
+
+width:200px;
+
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.3);
+
+display:none;
+
+}
+
+.nav-links.show{
+
+display:flex;
+
+}
+.nav-links a{
+
+color:#800020;
+
+font-weight:bold;
+
+padding:8px 0;
+
+display:block;
+
+}
+
+.nav-links a:hover{
+
+color:#ff7a00;
+
+}
+/* ------------------------------
+LOGO FESTIVAL STYLE
+------------------------------ */
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+font-family:'Cinzel', serif;
+
+font-size:20px;
+
+color:#ffd700;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+position:relative;
+
+}
+
+/* ganesh icon */
+
+.ganesh-icon{
+
+font-size:26px;
+
+animation:ganeshGlow 3s infinite;
+
+}
+
+/* glowing text */
+
+.logo-text{
+
+text-shadow:
+0 0 5px rgba(255,215,0,0.7),
+0 0 15px rgba(255,215,0,0.5),
+0 0 25px rgba(255,215,0,0.3);
+
+}
+
+/* temple underline */
+
+.logo::after{
+
+content:"";
+
+position:absolute;
+
+bottom:-6px;
+left:0;
+
+width:100%;
+height:3px;
+
+background:linear-gradient(90deg,#ff7a00,#ffd700);
+
+border-radius:2px;
+
+}
+
+/* glowing animation */
+
+@keyframes ganeshGlow{
+
+0%{
+text-shadow:0 0 5px #ffd700;
+}
+
+50%{
+text-shadow:0 0 15px #ffd700;
+}
+
+100%{
+text-shadow:0 0 5px #ffd700;
+}
+
+}
+<li>
+<a href="#donate" class="donate-btn">
+<i class="fa-solid fa-hand-holding-heart"></i> Donate
+</a>
+</li>
+
+/* ------------------------------
+DONATION SECTION
+------------------------------ */
+
+.donate-section{
+
+text-align:center;
+
+background:#fff8e7;
+
+padding:80px 20px;
+
+}
+
+.donate-main-btn{
+
+background:linear-gradient(45deg,#800020,#ff7a00);
+
+color:white;
+
+padding:14px 30px;
+
+border-radius:30px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+display:inline-block;
+
+margin-top:20px;
+
+}
+/* ------------------------------
+DONATION PAGE
+------------------------------ */
+
+.donation-page{
+
+text-align:center;
+padding:120px 20px;
+
+}
+
+.donation-page h1{
+
+font-size:42px;
+color:#800020;
+margin-bottom:20px;
+
+}
+
+.donation-box{
+
+margin-top:30px;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:15px;
+
+}
+
+.donation-box img{
+
+width:250px;
+
+border-radius:12px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.3);
+
+}
+
+.upi-id{
+
+font-size:22px;
+color:#ff7a00;
+
+}
+/* ------------------------------
+DONATE PAGE
+------------------------------ */
+
+.donate-page{
+
+text-align:center;
+padding:120px 20px;
+
+}
+
+.donate-page h1{
+
+font-size:42px;
+color:#800020;
+margin-bottom:15px;
+
+}
+
+.donate-card{
+
+margin:auto;
+margin-top:30px;
+
+background:white;
+
+padding:30px;
+
+border-radius:15px;
+
+max-width:350px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.25);
+
+}
+
+.donate-card img{
+
+width:230px;
+margin-bottom:15px;
+
+}
+
+.scan-text{
+
+font-size:15px;
+color:#555;
+
+}
+
+#upiID{
+
+color:#ff7a00;
+margin-top:10px;
+
+}
+
+.copy-btn{
+
+margin-top:10px;
+
+background:#800020;
+
+color:white;
+
+border:none;
+
+padding:10px 18px;
+
+border-radius:20px;
+
+cursor:pointer;
+
+}
+
+.copy-btn:hover{
+
+background:#ff7a00;
+
+}
+
+.upi-apps{
+
+margin-top:15px;
+
+font-size:26px;
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+color:#555;
+
+}
+
+.back-home{
+
+margin-top:40px;
+
+}
+/* ------------------------------
+DONATE SECTION
+------------------------------ */
+
+.donate-preview{
+
+text-align:center;
+padding:80px 20px;
+
+background:#fff8e7;
+
+}
+
+.donate-preview h2{
+
+font-size:36px;
+color:#800020;
+
+margin-bottom:15px;
+
+}
+
+.donate-preview p{
+
+max-width:600px;
+margin:auto;
+
+margin-bottom:25px;
+
+}
+
+.donate-main-btn{
+
+background:linear-gradient(45deg,#ff7a00,#ffd700);
+
+color:white;
+
+padding:14px 28px;
+
+border-radius:30px;
+
+font-weight:bold;
+
+text-decoration:none;
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+box-shadow:0 6px 18px rgba(0,0,0,0.3);
+
+transition:0.3s;
+
+}
+
+.donate-main-btn:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
+
+}
