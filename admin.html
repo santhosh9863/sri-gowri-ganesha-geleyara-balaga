@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard – Sri Gowri Ganesha Geleyara Balaga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --saffron: #FF6B00;
+      --gold: #FFB800;
+      --deep: #1A0A00;
+      --card: #2A1500;
+      --border: rgba(255,184,0,0.25);
+      --text: #FFF5E0;
+      --muted: #C4A882;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(255,107,0,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(255,184,0,0.07) 0%, transparent 60%);
+    }
+    header { text-align: center; padding: 40px 20px 20px; }
+    header h1 { font-family: 'Cinzel', serif; font-size: clamp(1.3rem, 3.5vw, 2rem); color: var(--gold); letter-spacing: 0.05em; }
+    header p { color: var(--muted); margin-top: 6px; }
+    .divider { width: 80px; height: 3px; background: linear-gradient(90deg, var(--saffron), var(--gold)); margin: 14px auto 0; border-radius: 2px; }
+    nav { text-align: center; padding: 16px 20px; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; margin: 0 12px; transition: color 0.2s; }
+    nav a:hover { color: var(--gold); }
+    .stats { display: flex; gap: 16px; max-width: 900px; margin: 0 auto 28px; padding: 0 20px; flex-wrap: wrap; }
+    .stat-card { flex: 1; min-width: 140px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .stat-card .num { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--gold); font-weight: 800; }
+    .stat-card .label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+    .controls { max-width: 900px; margin: 0 auto 20px; padding: 0 20px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .search-box { flex: 1; min-width: 200px; padding: 10px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'Nunito', sans-serif; font-size: 0.95rem; outline: none; }
+    .search-box:focus { border-color: var(--gold); }
+    .filter-select { padding: 10px 14px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'Nunito', sans-serif; font-size: 0.9rem; outline: none; }
+    .filter-select option { background: #2A1500; }
+    .export-btn { padding: 10px 20px; background: linear-gradient(135deg, var(--saffron), var(--gold)); color: #1A0A00; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem; border: none; border-radius: 10px; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+    .export-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(255,107,0,0.35); }
+    .table-wrap { max-width: 900px; margin: 0 auto 60px; padding: 0 20px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    thead { background: rgba(255,184,0,0.1); }
+    th { padding: 14px 16px; text-align: left; font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--gold); letter-spacing: 0.07em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+    td { padding: 13px 16px; font-size: 0.92rem; border-bottom: 1px solid rgba(255,184,0,0.08); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,184,0,0.04); }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; background: rgba(255,107,0,0.2); color: var(--gold); border: 1px solid rgba(255,184,0,0.3); }
+    .delete-btn { background: rgba(255,60,60,0.15); color: #ff9090; border: 1px solid rgba(255,60,60,0.3); padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; cursor: pointer; transition: background 0.2s; }
+    .delete-btn:hover { background: rgba(255,60,60,0.3); }
+    .loading { text-align: center; padding: 40px; color: var(--muted); font-size: 1rem; }
+    .empty { text-align: center; padding: 40px; color: var(--muted); }
+    .empty .icon { font-size: 2.5rem; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🐘 Admin Dashboard</h1>
+    <p>Sri Gowri Ganesha Geleyara Balaga – Volunteer Registry</p>
+    <div class="divider"></div>
+  </header>
+
+  <nav>
+    <a href="index.html">← Back to Home</a>
+    <a href="volunteer.html">+ Add Volunteer</a>
+  </nav>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num" id="totalCount">–</div>
+      <div class="label">Total Volunteers</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="todayCount">–</div>
+      <div class="label">Registered Today</div>
+    </div>
+    <div class="stat-card">
+      <div class="num" id="topRole">–</div>
+      <div class="label">Most Popular Role</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input class="search-box" type="text" id="searchInput" placeholder="🔍 Search by name or phone..." oninput="renderTable()" />
+    <select class="filter-select" id="filterInterest" onchange="renderTable()">
+      <option value="">All Roles</option>
+      <option value="Decoration">Decoration</option>
+      <option value="Food & Annadanam">Food & Annadanam</option>
+      <option value="Music & Cultural">Music & Cultural</option>
+      <option value="Security & Crowd Management">Security</option>
+      <option value="Puja & Rituals">Puja & Rituals</option>
+      <option value="Photography">Photography</option>
+      <option value="General Help">General Help</option>
+    </select>
+    <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+  </div>
+
+  <div class="table-wrap">
+    <div class="loading" id="loadingMsg">⏳ Loading volunteers...</div>
+    <table id="volunteerTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Age</th>
+          <th>Area of Interest</th>
+          <th>Registered On</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="empty" id="emptyMsg" style="display:none;">
+      <div class="icon">🙏</div>
+      <p>No volunteers found.</p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, deleteDoc, doc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDBftT16hgwnfrIonX2fCmjFBmGnbvdEwo",
+      authDomain: "ganesha-balaga.firebaseapp.com",
+      projectId: "ganesha-balaga",
+      storageBucket: "ganesha-balaga.firebasestorage.app",
+      messagingSenderId: "1070110513022",
+      appId: "1:1070110513022:web:ea32b9d09e99d95648852f"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let allVolunteers = [];
+
+    async function loadVolunteers() {
+      try {
+        const q = query(collection(db, 'volunteers'), orderBy('registeredAt', 'desc'));
+        const snapshot = await getDocs(q);
+        allVolunteers = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        updateStats();
+        renderTable();
+        document.getElementById('loadingMsg').style.display = 'none';
+        document.getElementById('volunteerTable').style.display = 'table';
+      } catch (err) {
+        document.getElementById('loadingMsg').textContent = '❌ Failed to load. Check Firebase setup.';
+        console.error(err);
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('totalCount').textContent = allVolunteers.length;
+      const today = new Date().toDateString();
+      const todayCount = allVolunteers.filter(v => {
+        if (!v.registeredAt) return false;
+        return new Date(v.registeredAt.seconds * 1000).toDateString() === today;
+      }).length;
+      document.getElementById('todayCount').textContent = todayCount;
+      const roleCounts = {};
+      allVolunteers.forEach(v => { roleCounts[v.interest] = (roleCounts[v.interest] || 0) + 1; });
+      const topRole = Object.entries(roleCounts).sort((a,b) => b[1]-a[1])[0];
+      document.getElementById('topRole').textContent = topRole ? topRole[0].split(' ')[0] : '–';
+    }
+
+    window.renderTable = function () {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const filter = document.getElementById('filterInterest').value;
+      const filtered = allVolunteers.filter(v => {
+        const matchSearch = v.name?.toLowerCase().includes(search) || v.phone?.includes(search);
+        const matchFilter = !filter || v.interest === filter;
+        return matchSearch && matchFilter;
+      });
+      const tbody = document.getElementById('tableBody');
+      const emptyMsg = document.getElementById('emptyMsg');
+      const table = document.getElementById('volunteerTable');
+      if (filtered.length === 0) {
+        table.style.display = 'none';
+        emptyMsg.style.display = 'block';
+        return;
+      }
+      table.style.display = 'table';
+      emptyMsg.style.display = 'none';
+      tbody.innerHTML = filtered.map((v, i) => {
+        const date = v.registeredAt
+          ? new Date(v.registeredAt.seconds * 1000).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })
+          : 'N/A';
+        return `
+          <tr>
+            <td>${i + 1}</td>
+            <td><strong>${v.name}</strong></td>
+            <td>${v.phone}</td>
+            <td>${v.age}</td>
+            <td><span class="badge">${v.interest}</span></td>
+            <td>${date}</td>
+            <td><button class="delete-btn" onclick="deleteVolunteer('${v.id}')">🗑 Delete</button></td>
+          </tr>`;
+      }).join('');
+    };
+
+    window.deleteVolunteer = async function (id) {
+      if (!confirm('Are you sure you want to remove this volunteer?')) return;
+      try {
+        await deleteDoc(doc(db, 'volunteers', id));
+        allVolunteers = allVolunteers.filter(v => v.id !== id);
+        updateStats();
+        renderTable();
+      } catch (err) {
+        alert('Failed to delete. Try again.');
+      }
+    };
+
+    window.exportCSV = function () {
+      const rows = [['Name', 'Phone', 'Age', 'Interest', 'Registered On']];
+      allVolunteers.forEach(v => {
+        const date = v.registeredAt ? new Date(v.registeredAt.seconds * 1000).toLocaleDateString() : 'N/A';
+        rows.push([v.name, v.phone, v.age, v.interest, date]);
+      });
+      const csv = rows.map(r => r.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'volunteers.csv';
+      a.click();
+    };
+
+    loadVolunteers();
+  </script>
+
+</body>
+</html>

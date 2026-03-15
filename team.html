@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Team – Sri Gowri Ganesha Geleyara Balaga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --saffron: #FF6B00;
+      --gold: #FFB800;
+      --deep: #1A0A00;
+      --card: #2A1500;
+      --card-back: #3D1F00;
+      --border: rgba(255,184,0,0.25);
+      --text: #FFF5E0;
+      --muted: #C4A882;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse at 15% 15%, rgba(255,107,0,0.13) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(255,184,0,0.09) 0%, transparent 55%);
+    }
+    header { text-align: center; padding: 50px 20px 10px; }
+    .elephant-icon { font-size: 2.8rem; display: block; margin-bottom: 10px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    header h1 { font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 4vw, 2.4rem); color: var(--gold); letter-spacing: 0.06em; }
+    header p { color: var(--muted); margin-top: 8px; font-size: 1rem; }
+    .divider { width: 80px; height: 3px; background: linear-gradient(90deg, var(--saffron), var(--gold)); margin: 16px auto 0; border-radius: 2px; }
+    nav { text-align: center; padding: 20px; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; margin: 0 12px; transition: color 0.2s; }
+    nav a:hover { color: var(--gold); }
+    .team-count { text-align: center; margin-bottom: 28px; color: var(--muted); font-size: 0.95rem; }
+    .team-count span { color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 800; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 28px; max-width: 1100px; margin: 10px auto 70px; padding: 0 24px; }
+    .flip-card { height: 280px; perspective: 1000px; cursor: pointer; opacity: 0; transform: translateY(24px); animation: fadeUp 0.5s forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .flip-card:nth-child(1)  { animation-delay: 0.05s; }
+    .flip-card:nth-child(2)  { animation-delay: 0.10s; }
+    .flip-card:nth-child(3)  { animation-delay: 0.15s; }
+    .flip-card:nth-child(4)  { animation-delay: 0.20s; }
+    .flip-card:nth-child(5)  { animation-delay: 0.25s; }
+    .flip-card:nth-child(6)  { animation-delay: 0.30s; }
+    .flip-card:nth-child(7)  { animation-delay: 0.35s; }
+    .flip-card:nth-child(8)  { animation-delay: 0.40s; }
+    .flip-card:nth-child(9)  { animation-delay: 0.45s; }
+    .flip-card:nth-child(10) { animation-delay: 0.50s; }
+    .flip-card:nth-child(11) { animation-delay: 0.55s; }
+    .flip-card:nth-child(12) { animation-delay: 0.60s; }
+    .flip-card:nth-child(13) { animation-delay: 0.65s; }
+    .flip-card:nth-child(14) { animation-delay: 0.70s; }
+    .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4,0.2,0.2,1); transform-style: preserve-3d; }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); }
+    .flip-card-front { background: var(--card); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+    .flip-card-front img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .flip-card:hover .flip-card-front img { transform: scale(1.05); }
+    .front-overlay { position: relative; z-index: 2; width: 100%; padding: 14px; background: linear-gradient(to top, rgba(26,10,0,0.95) 0%, rgba(26,10,0,0.5) 70%, transparent 100%); text-align: center; }
+    .front-overlay .name { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold); font-weight: 600; }
+    .tap-hint { font-size: 0.7rem; color: var(--muted); margin-top: 3px; }
+    .flip-card-back { background: var(--card-back); transform: rotateY(180deg); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 20px; text-align: center; gap: 14px; }
+    .back-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); box-shadow: 0 0 20px rgba(255,184,0,0.3); }
+    .back-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); font-weight: 800; }
+    .back-role { display: inline-block; padding: 5px 16px; background: linear-gradient(135deg, rgba(255,107,0,0.25), rgba(255,184,0,0.2)); border: 1px solid rgba(255,184,0,0.4); border-radius: 20px; font-size: 0.85rem; color: var(--text); font-weight: 600; }
+    .close-hint { font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+    footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="elephant-icon">🐘</span>
+    <h1>Our Volunteer Team</h1>
+    <p>The hearts behind Sri Gowri Ganesha Geleyara Balaga</p>
+    <div class="divider"></div>
+  </header>
+
+  <nav>
+    <a href="index.html">← Back to Home</a>
+    <a href="volunteer.html">Join Our Team</a>
+  </nav>
+
+  <div class="team-count">Meet our <span>14</span> dedicated volunteers</div>
+
+  <div class="team-grid">
+
+    <!-- 1. Kiran Reddy -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/kiranreddy.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Kiran+Reddy&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Kiran Reddy</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/kiranreddy.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Kiran+Reddy&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Kiran Reddy</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Santhosh -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/santhosh.png" onerror="this.src='https://ui-avatars.com/api/?name=Santhosh&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Santhosh</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/santhosh.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Santhosh&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Santhosh</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Nithin -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/nithin.png" onerror="this.src='https://ui-avatars.com/api/?name=Nithin&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Nithin</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/nithin.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Nithin&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Nithin</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Ravi Kiran -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/ravikiran.png" onerror="this.src='https://ui-avatars.com/api/?name=Ravi+Kiran&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Ravi Kiran</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/ravikiran.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Ravi+Kiran&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Ravi Kiran</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Santhosh Krishna -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/santhoshkrishna.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Santhosh+Krishna&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Santhosh Krishna</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/santhoshkrishna.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Santhosh+Krishna&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Santhosh Krishna</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Pavan Kumar -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/pavankumar.png" onerror="this.src='https://ui-avatars.com/api/?name=Pavan+Kumar&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Pavan Kumar</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/pavankumar.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Pavan+Kumar&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Pavan Kumar</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Krishna -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/krishna.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Krishna&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Krishna</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/krishna.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Krishna&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Krishna</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Shreyas -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/shreyas.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Shreyas&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Shreyas</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/shreyas.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Shreyas&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Shreyas</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Ganesh Reddy (Chintu) -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/ganeshreddy.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Ganesh+Reddy&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Ganesh Reddy</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/ganeshreddy.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Ganesh+Reddy&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Ganesh Reddy</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Darshan Reddy -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/darshanreddy.png" onerror="this.src='https://ui-avatars.com/api/?name=Darshan+Reddy&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Darshan Reddy</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/darshanreddy.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Darshan+Reddy&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Darshan Reddy</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Pradeep -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/pradeep.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Pradeep&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Pradeep</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/pradeep.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Pradeep&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Pradeep</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Bharath -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/bharath.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Bharath&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Bharath</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/bharath.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Bharath&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Bharath</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. Jit -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/jit.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Jit&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Jit</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/jit.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Jit&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Jit</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. Adhi -->
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="images/adhi.png" onerror="this.src='https://ui-avatars.com/api/?name=Adhi&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="front-overlay"><div class="name">Adhi</div><div class="tap-hint">tap to know more</div></div>
+        </div>
+        <div class="flip-card-back">
+          <img class="back-avatar" src="images/adhi.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Adhi&background=3D1F00&color=FFB800&size=300'"/>
+          <div class="back-name">Adhi</div>
+          <div class="back-role">🙏 Volunteer</div>
+          <div class="close-hint">tap to close</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 SRI GOWRI GANESHA GELEYARA BALAGA</p>
+  </footer>
+
+</body>
+</html>

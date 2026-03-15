@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Volunteer Registration – Sri Gowri Ganesha Geleyara Balaga</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --saffron: #FF6B00;
+      --gold: #FFB800;
+      --deep: #1A0A00;
+      --card: #2A1500;
+      --border: rgba(255,184,0,0.25);
+      --text: #FFF5E0;
+      --muted: #968060;
+    }
+ 
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(255,107,0,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(255,184,0,0.08) 0%, transparent 60%);
+    }
+ 
+    header {
+      text-align: center;
+      padding: 48px 20px 24px;
+      position: relative;
+    }
+ 
+    .elephant-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 12px;
+      animation: float 3s ease-in-out infinite;
+    }
+ 
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+ 
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+    }
+ 
+    header p {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+ 
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--gold));
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+ 
+    main {
+      max-width: 560px;
+      margin: 32px auto 60px;
+      padding: 0 20px;
+    }
+ 
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,184,0,0.1);
+    }
+ 
+    .form-group {
+      margin-bottom: 22px;
+    }
+ 
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+ 
+    input, select {
+      width: 100%;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+ 
+    input:focus, select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(255,184,0,0.15);
+    }
+ 
+    select option {
+      background: #2A1500;
+      color: var(--text);
+    }
+ 
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, var(--saffron), var(--gold));
+      color: #1A0A00;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+ 
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255,107,0,0.4);
+    }
+ 
+    .submit-btn:active { transform: translateY(0); }
+ 
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+ 
+    /* Success / Error messages */
+    .message {
+      display: none;
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .message.success {
+      background: rgba(0,200,100,0.15);
+      border: 1px solid rgba(0,200,100,0.4);
+      color: #5fffaa;
+    }
+    .message.error {
+      background: rgba(255,60,60,0.15);
+      border: 1px solid rgba(255,60,60,0.4);
+      color: #ff9090;
+    }
+ 
+    nav {
+      text-align: center;
+      padding: 0 20px 20px;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin: 0 12px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold); }
+ 
+    @media (max-width: 480px) {
+      .form-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <header>
+    <span class="elephant-icon">🐘</span>
+    <h1>Sri Gowri Ganesha<br>Geleyara Balaga</h1>
+    <p>Join our celebration as a volunteer</p>
+    <div class="divider"></div>
+  </header>
+ 
+  <nav>
+    <a href="index.html">← Back to Home</a>
+  </nav>
+ 
+  <main>
+    <div class="form-card">
+      <div class="message" id="successMsg">✅ Thank you! You've been registered as a volunteer. We'll contact you soon!</div>
+      <div class="message" id="errorMsg">❌ Something went wrong. Please try again.</div>
+ 
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name" required />
+      </div>
+ 
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required />
+      </div>
+ 
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" placeholder="Your age" min="10" max="80" required />
+      </div>
+ 
+      <div class="form-group">
+        <label for="interest">Area of Interest</label>
+        <select id="interest" required>
+          <option value="" disabled selected>Select your area</option>
+          <option value="Decoration">🎨 Decoration</option>
+          <option value="Food & Annadanam">🍛 Food & Annadanam</option>
+          <option value="Music & Cultural">🎵 singing/dancing</option>
+          <option value="Security & Crowd Management">🛡️ Security & Crowd Management</option>
+          <option value="Puja & Rituals">🪔 Puja & Rituals</option>
+          <option value="Photography">📸 Photography</option>
+          <option value="General Help">🙏 General Help</option>
+        </select>
+      </div>
+ 
+      <button class="submit-btn" id="submitBtn" onclick="registerVolunteer()">
+        🙏 Register as Volunteer
+      </button>
+    </div>
+  </main>
+ 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDBftT16hgwnfrIonX2fCmjFBmGnbvdEwo",
+      authDomain: "ganesha-balaga.firebaseapp.com",
+      projectId: "ganesha-balaga",
+      storageBucket: "ganesha-balaga.firebasestorage.app",
+      messagingSenderId: "1070110513022",
+      appId: "1:1070110513022:web:ea32b9d09e99d95648852f"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.registerVolunteer = async function () {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const age = document.getElementById('age').value.trim();
+      const interest = document.getElementById('interest').value;
+
+      const successMsg = document.getElementById('successMsg');
+      const errorMsg = document.getElementById('errorMsg');
+      const btn = document.getElementById('submitBtn');
+
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+
+      if (!name || !phone || !age || !interest) {
+        errorMsg.textContent = '❌ Please fill in all fields.';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Registering...';
+
+      try {
+        await addDoc(collection(db, 'volunteers'), {
+          name,
+          phone,
+          age: parseInt(age),
+          interest,
+          registeredAt: serverTimestamp()
+        });
+
+        successMsg.style.display = 'block';
+        document.getElementById('name').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('age').value = '';
+        document.getElementById('interest').value = '';
+      } catch (err) {
+        console.error(err);
+        errorMsg.style.display = 'block';
+      }
+
+      btn.disabled = false;
+      btn.textContent = '🙏 Register as Volunteer';
+    };
+</script>
+ 
+</body>
+</html>
