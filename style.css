@@ -1053,3 +1053,62 @@ box-shadow:0 10px 25px rgba(0,0,0,0.35);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
 }
+.volunteer-cta {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.volunteer-cta-box {
+  display: flex;
+  justify-content: center;
+}
+.team-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #FF6B00, #FFB800);
+  color: #1A0A00;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  text-decoration: none;
+  border-radius: 30px;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255,184,0,0.35);
+}
+
+.team-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255,184,0,0.5);
+}
+/* TEAM BUTTON CENTER */
+.team-button-container{
+  width:100%;
+  text-align:center;
+  margin:50px 0;
+}
+
+/* BUTTON STYLE */
+.team-btn{
+  display:inline-block;
+  padding:14px 32px;
+  font-family:'Cinzel', serif;
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:0.05em;
+
+  color:#1A0A00;
+  text-decoration:none;
+
+  background:linear-gradient(135deg,#FF6B00,#FFB800);
+  border-radius:40px;
+
+  box-shadow:0 8px 25px rgba(255,184,0,0.35);
+
+  transition:all 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.team-btn:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 12px 30px rgba(255,184,0,0.55);
+}
